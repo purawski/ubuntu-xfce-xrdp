@@ -1,1 +1,1 @@
-# ubuntu-xfce-xrdp
+# ubuntu-xfce-x2go
