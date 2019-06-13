@@ -2,7 +2,7 @@ version: '2.3'
 services:
  xubuntu:
   hostname: xubuntu.urawski.com
-  image: uraf/ubuntu-xfce-x2go
+  image: uraf/ubuntu-xfce-xrdp
   restart: always
   dns_search: urawski.com
   ports:

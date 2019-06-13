@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 
@@ -22,6 +22,7 @@ RUN apt-get update \
     #&& curl -O http://mozilla.debian.net/pkg-mozilla-archive-keyring_1.1_all.deb \
     #&& dpkg -i pkg-mozilla-archive-keyring_1.1_all.deb \
     #&& rm pkg-mozilla-archive-keyring_1.1_all.deb \
+
     && apt-get update \
     && apt-get install -y --force-yes\
 #        xubuntu-desktop \
@@ -45,6 +46,7 @@ RUN apt-get update \
         remmina \
         gdebi \
     	xterm \
+        xrdp \
 #        x2goserver x2goserver-xsession pwgen\
 #	software-properties-common \
 #        docker-ce \
@@ -71,4 +73,4 @@ COPY config /root/.config
 COPY scripts /scripts
 COPY config/terminator root/.config/
 
-ENTRYPOINT ["/scripts/init.sh"]
+# ENTRYPOINT ["/scripts/init.sh"]

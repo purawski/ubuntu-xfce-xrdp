@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # create a user
 DOCKER_USER_ID=${DOCKER_USER_ID:-9001} 
