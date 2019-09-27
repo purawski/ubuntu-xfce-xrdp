@@ -28,7 +28,7 @@ RUN apt-get update \
 #        xubuntu-desktop \
         libgconf-2-4 \
         sudo \
-#        bash-completion \
+        bash-completion \
         vim git \
 	net-tools \
     iproute2 \

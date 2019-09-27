@@ -5,6 +5,7 @@ services:
   image: uraf/ubuntu-xfce-xrdp
   restart: always
   dns_search: urawski.com
+  shm_size: '2gb'
   ports:
    - 4000:4000/tcp
    - 2222:22/tcp
