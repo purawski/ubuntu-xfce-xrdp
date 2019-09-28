@@ -73,4 +73,4 @@ COPY config /root/.config
 COPY scripts /scripts
 COPY config/terminator root/.config/
 
-# ENTRYPOINT ["/scripts/init.sh"]
+ENTRYPOINT ["/scripts/init.sh"]
