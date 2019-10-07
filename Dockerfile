@@ -10,12 +10,6 @@ RUN apt-get update \
 #    && apt-key add linux_signing_key.pub \
 #    && rm linux_signing_key.pub \
 #    && add-apt-repository ppa:x2go/stable \
-#    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-#    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-
-#RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg 
-#RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg 
-#RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list 
 #    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     #&& echo "deb http://packages.linuxmint.com debian import" >> /etc/apt/sources.list.d/linuxmint.list \
     #&& echo "deb http://mozilla.debian.net/ jessie-backports firefox-release" >> /etc/apt/sources.list.d/debian-mozilla.list \
@@ -46,11 +40,12 @@ RUN apt-get update \
         remmina \
         gdebi \
     	xterm \
-        xrdp \
+	software-properties-common \
+        gnupg-agent \
+        xrdp 
 #        x2goserver x2goserver-xsession pwgen\
-#	software-properties-common \
 #        docker-ce \
-#        code \
+#       code \
 #    && rm /etc/apt/sources.list.d/google.list 
 #    && apt-get upgrade -y 
 #RUN curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o code_1.18.0-1510145176_amd64.deb 
@@ -63,7 +58,22 @@ RUN apt-get update \
 #    && rm /nomachine.deb \
 #    && apt-get udate \
 #    && apt-get install docker-ce\
-    && mkdir /root/.config \
+#RUN  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+#    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor > docker.gpg
+RUN mv docker.gpg /etc/apt/trusted.gpg.d/docker.gpg \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg 
+RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg 
+RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list 
+
+RUN apt-get update
+RUN apt-get install -y --force-yes \
+        code \
+        docker
+
+RUN mkdir /root/.config \
     && apt-get autoremove \
     && apt-get autoclean 
 #RUN echo X2GO_NXAGENT_DEFAULT_OPTIONS+=\" -extension BIG-REQUESTS\" >> /etc/x2go/x2goagent.options
