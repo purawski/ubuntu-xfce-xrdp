@@ -9,6 +9,7 @@ services:
   ports:
    - 4000:4000/tcp
    - 2222:22/tcp
+   - 3389:3389/tcp
   environment:
   - DOCKER_USER=uraf
   - DOCKER_PASSWORD=uraf
