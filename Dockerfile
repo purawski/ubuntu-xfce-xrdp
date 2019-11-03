@@ -83,4 +83,8 @@ COPY config /root/.config
 COPY scripts /scripts
 COPY config/terminator root/.config/
 
+COPY ./files/ /tmp/
+RUN chmod +x /tmp/install/install.sh && /tmp/install/install.sh && rm -r /tmp/install
+
+
 ENTRYPOINT ["/scripts/init.sh"]
